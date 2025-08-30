@@ -9,7 +9,7 @@ import com.library.user.UserService;
 public class Main {
     public static void main(String[] args) throws Exception {
         int option = 0;
-        Scanner scan = new Scanner(System.in);
+        var scan = new Scanner(System.in);
         do {
             System.out.println("Program starts here:: ");
             System.out.println("----------------" );
