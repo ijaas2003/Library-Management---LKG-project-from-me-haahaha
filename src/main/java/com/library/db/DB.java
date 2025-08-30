@@ -8,7 +8,7 @@ import com.library.books.Book;
 import com.library.user.User;
 
 public class DB {
-  public static Map<Long, User> usersDb = new HashMap<>();
+  public static Map<String, User> usersDb = new HashMap<>();
   /**
    *
    */

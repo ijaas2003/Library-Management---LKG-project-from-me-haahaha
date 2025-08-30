@@ -2,10 +2,12 @@ package com.library.user;
 
 import java.util.List;
 
+import com.library.errors.UserExceptions;
+
 public interface  UserAPI {
-  public User addNewUser ();
+  public User addNewUser () throws UserExceptions;
   public boolean removeUser (Long userId);
   public User updateUser (); 
   public List<User> getUserList ();
-  public User getUserDetailsById(Long userId);
+  public User getUserDetailsByEmail(String userEmail);
 }

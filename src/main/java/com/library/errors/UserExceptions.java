@@ -6,6 +6,7 @@ public class UserExceptions extends Exception {
         USER_NOT_FOUND,
         BOOK_NOT_AVAILABLE,
         INVALID_OPERATION,
+        USER_ALREADY_EXIST,
         UNABLE_TO_ADD_SERVER_OPERATION_FAILED;
   }
 

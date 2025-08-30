@@ -3,6 +3,8 @@ package com.library.user;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.lang.model.type.ErrorType;
+
 import com.library.db.DB;
 /*
  * @author - Ijaas
@@ -26,19 +28,25 @@ public class UserImpl implements UserAPI {
   }
 
   @Override
-  public User addNewUser () {
+  public User addNewUser () throws UserExceptions {
 
     User.Builder userBuilder = new User.Builder();
   
     Scanner scan = new Scanner(System.in);
-    System.out.println("Enter your name");
-    userBuilder.setName(scan.nextLine());
-    System.out.println("Enter Email");
-    userBuilder.setEmail(scan.nextLine());
-    System.out.println("Enter PhoneNumber");
-    userBuilder.setPhoneNumber(scan.nextLine());
-    System.out.println("Enter password");
-    userBuilder.setPassword(scan.nextLine());
+      System.out.println("Enter your name");
+      userBuilder.setName(scan.nextLine());
+      System.out.println("Enter Email");
+      String email = scan.next();
+      if (userUtil.isUserAleadyExist(email)) {
+        System.out.println("user already exist ::");
+        throw new UserExceptions(com.library.errors.UserExceptions.ErrorType.USER_ALREADY_EXIST, "User Already exist");
+      }
+      userBuilder.setEmail(email);
+      System.out.println("Enter PhoneNumber");
+      userBuilder.setPhoneNumber(scan.nextLine());
+      System.out.println("Enter password");
+      userBuilder.setPassword(scan.nextLine());
+    
     
     User user = userBuilder.build();
     try {
@@ -58,8 +66,17 @@ public class UserImpl implements UserAPI {
 
   @Override
   public User updateUser () {
-    User user = new User();
-    return user;
+    System.out.println("--------------------");
+    System.out.println("Enter the field you should update Eg:: name/email/ph");
+    Scanner scan = new Scanner(System.in);
+
+    String field = scan.next();
+    if (!field.equals("name") && !field.equals("email") && !field.equals("ph")) {
+      System.out.println("Incorrect field - are you blind???!!!!");
+      return null;
+    }
+
+    return null;
   }
 
   @Override
@@ -70,8 +87,16 @@ public class UserImpl implements UserAPI {
             .toList();
   }
 
+  public User getUserDetailsById () {
+    var scan = new Scanner(System.in);
+    System.out.println("Enter the userID:::: ");
+    return getUserDetailsByEmail(scan.next()); 
+  }
+
   @Override
-  public User getUserDetailsById(Long userId) {
-    return new User();
+  public User getUserDetailsByEmail(String email) {
+    User user = userUtil.getUserByEmail(email);
+    System.out.println(user);
+    return user;
   }
 }
