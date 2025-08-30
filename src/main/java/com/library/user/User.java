@@ -2,17 +2,18 @@ package com.library.user;
 
 public class User {
 
+  public Long userId;
   public String name;
   public String email;
   public String password;
   public String phoneNumber;
-
-  public User () {
-  }
-  
   /**
    * @return user Name
    */
+
+  public Long getUserId () {
+    return this.userId;
+  }
   public String getName () {
     return this.name;
   }
@@ -30,7 +31,12 @@ public class User {
   }
 
   public static class Builder {
+
     User user = new User();
+
+    Builder () {
+      this.user.userId = System.currentTimeMillis();
+    }
 
     public Builder setName (String name) {
       this.user.name = name;

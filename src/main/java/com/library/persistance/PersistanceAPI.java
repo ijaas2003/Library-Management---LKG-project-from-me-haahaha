@@ -1,8 +1,8 @@
 package com.library.persistance;
 
-public interface PersistanceAPI {
-  public boolean add();
-  public boolean delete ();
-  public boolean update();
-  public <T> T get ();
+public interface PersistanceAPI<T> {
+    boolean add(T obj);
+    boolean update(T obj);
+    boolean delete(int id);  // delete by id
+    T get(int id);
 }
