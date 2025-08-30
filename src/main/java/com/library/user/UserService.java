@@ -24,19 +24,38 @@ public class UserService {
 
     System.out.println("------------------");
     System.out.println("User Operation starts here");
-    System.out.println("1. available users");
-    System.out.println("2. Need UserDetails");
-    System.out.println("3. Delete user");
-    System.out.println("4. Update user");
+    System.out.println("1. Show available users");
+    System.out.println("2. Add New User");
+    System.out.println("3. Need UserDetails");
+    System.out.println("4. Delete user");
+    System.out.println("5. Update user");
     System.out.println("------------------");
 
     var scan = new Scanner(System.in);
     int userOptions = scan.nextInt();
     switch (userOptions) {
       case 1:
+        System.out.println("-----------SHOW AVAILABLE USER -----------\n \n");
         System.out.println(userImpl.getUserList());
+        System.out.println("-----------ENDS AVAILABLE USER -----------");
         break;
-    
+      case 2:
+        System.out.println("----------ADD USER STARTS------------------\n \n");
+        userImpl.addNewUser();
+        System.out.println("----------ADD USER ENDS------------------");
+        break;
+      case 3:
+        System.out.println("-----------GET USER DETAILS STARTS-----------\n \n");
+        System.out.println("-----------GET USER DETAILS ENDS-----------");
+        break;
+      case 4: 
+        System.out.println("-----------DELETE USER STARTS-----------\n \n");
+        System.out.println("-----------DELETE USER ENDS-----------");
+        break;
+      case 5:
+        System.out.println("-----------UPDATE USER STARTS-----------\n \n");
+        System.out.println("-----------UPDATE USER ENDS-----------"); 
+        break;
       default:
         break;
     }

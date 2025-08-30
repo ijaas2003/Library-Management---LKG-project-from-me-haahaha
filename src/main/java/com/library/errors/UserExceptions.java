@@ -5,7 +5,8 @@ public class UserExceptions extends Exception {
   public enum ErrorType {
         USER_NOT_FOUND,
         BOOK_NOT_AVAILABLE,
-        INVALID_OPERATION
+        INVALID_OPERATION,
+        UNABLE_TO_ADD_SERVER_OPERATION_FAILED;
   }
 
   private final ErrorType type;

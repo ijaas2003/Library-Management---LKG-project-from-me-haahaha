@@ -1,12 +1,13 @@
 package com.library.user;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Scanner;
 
 import com.library.db.DB;
-import com.library.errors.UserNotFoundException;
+/*
+ * @author - Ijaas
+ */
+import com.library.errors.UserExceptions;
 /*
  * @UserImpl - Which is contains the implementation laryer so it contains all the opeartions which need to 
  * perform all the user related operations it support like getList of userList, add new user in the db, 
@@ -14,24 +15,40 @@ import com.library.errors.UserNotFoundException;
  */
 public class UserImpl implements UserAPI {
 
-  public DB db;
+  public UserUtil userUtil;
 
   public UserImpl () {
-    this.db = new DB();
+    this.userUtil = new UserUtil();
   }
 
-  public UserImpl (DB db) {
-    this.db = db;
+  public UserImpl (UserUtil userUtil) {
+    this.userUtil = userUtil;
   }
 
   @Override
-  public User addNewUser (User user) {
-    int previousSize = db.usersDb.size();
-    db.usersDb.put(user.getUserId(), user);
-    if (db.usersDb.size() > previousSize ) {
-      return user;
+  public User addNewUser () {
+
+    User.Builder userBuilder = new User.Builder();
+  
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Enter your name");
+    userBuilder.setName(scan.nextLine());
+    System.out.println("Enter Email");
+    userBuilder.setEmail(scan.nextLine());
+    System.out.println("Enter PhoneNumber");
+    userBuilder.setPhoneNumber(scan.nextLine());
+    System.out.println("Enter password");
+    userBuilder.setPassword(scan.nextLine());
+    
+    User user = userBuilder.build();
+    try {
+      userUtil.addUserToDB(user);
+      System.out.println("\n \n User added successfully");
+    } catch (UserExceptions e) {
+      System.out.println("Exception occur while inserting user into db");
+      return (User) null;
     }
-    throw new UserNotFoundException("User able to appended")
+    return user;
   }
 
   @Override
@@ -40,13 +57,14 @@ public class UserImpl implements UserAPI {
   }
 
   @Override
-  public User updateUser (User user) {
+  public User updateUser () {
+    User user = new User();
     return user;
   }
 
   @Override
   public List<User> getUserList () {
-    return db.usersDb
+    return DB.usersDb
             .values()
             .stream()
             .toList();

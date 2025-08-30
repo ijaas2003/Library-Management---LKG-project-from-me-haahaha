@@ -1,13 +1,11 @@
 package com.library;
 
 import java.util.Scanner;
-
-import com.library.user.User;
-import com.library.user.UserAPI;
 import com.library.user.UserService;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
         int option = 0;
         var scan = new Scanner(System.in);
         do {

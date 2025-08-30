@@ -58,7 +58,7 @@ public class User {
       return this;
     }
 
-    public User getUser() {
+    public User build () {
       return user;
     }
   }
