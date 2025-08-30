@@ -36,7 +36,7 @@ public class UserService {
     switch (userOptions) {
       case 1:
         System.out.println("-----------SHOW AVAILABLE USER -----------\n \n");
-        System.out.println(userImpl.getUserList());
+        System.out.println(userImpl.getUserList().toString());
         System.out.println("-----------ENDS AVAILABLE USER -----------");
         break;
       case 2:

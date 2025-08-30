@@ -30,6 +30,17 @@ public class User {
     return this.phoneNumber;
   }
 
+  @Override
+  public String toString() {
+    return "\n" + "{" + 
+            "userId=" + userId +
+            ", name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", phoneNumber='" + phoneNumber + '\'' +
+            '}' + "\n";
+  }
+
+
   public static class Builder {
 
     User user = new User();
