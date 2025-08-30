@@ -2,11 +2,11 @@ package com.library.user;
 
 public class User {
 
-  public Long userId;
-  public String name;
-  public String email;
-  public String password;
-  public String phoneNumber;
+  private Long userId;
+  private String name;
+  private String email;
+  private String password;
+  private String phoneNumber;
   /**
    * @return user Name
    */

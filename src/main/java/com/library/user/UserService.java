@@ -1,5 +1,7 @@
 package com.library.user;
 
+import java.util.Scanner;
+
 public class UserService {
 
   public UserImpl userImpl;
@@ -28,6 +30,16 @@ public class UserService {
     System.out.println("4. Update user");
     System.out.println("------------------");
 
+    var scan = new Scanner(System.in);
+    int userOptions = scan.nextInt();
+    switch (userOptions) {
+      case 1:
+        System.out.println(userImpl.getUserList());
+        break;
+    
+      default:
+        break;
+    }
 
   }
 }
