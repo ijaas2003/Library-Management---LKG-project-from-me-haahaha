@@ -2,9 +2,6 @@ package com.library.user;
 
 import java.util.List;
 import java.util.Scanner;
-
-import javax.lang.model.type.ErrorType;
-
 import com.library.db.DB;
 /*
  * @author - Ijaas
@@ -43,9 +40,9 @@ public class UserImpl implements UserAPI {
       }
       userBuilder.setEmail(email);
       System.out.println("Enter PhoneNumber");
-      userBuilder.setPhoneNumber(scan.nextLine());
+      userBuilder.setPhoneNumber(scan.next());
       System.out.println("Enter password");
-      userBuilder.setPassword(scan.nextLine());
+      userBuilder.setPassword(scan.next());
     
     
     User user = userBuilder.build();
@@ -60,23 +57,25 @@ public class UserImpl implements UserAPI {
   }
 
   @Override
-  public boolean removeUser (Long userId) {
-    return true;
-  }
-
-  @Override
   public User updateUser () {
     System.out.println("--------------------");
-    System.out.println("Enter the field you should update Eg:: name/email/ph");
     Scanner scan = new Scanner(System.in);
-
+    System.out.println("Enter the email:::");
+    String email = scan.next();
+    if (!userUtil.isUserAleadyExist(email)) {
+      System.out.println("There is no data is present!!! Heyyy are you trying to update a data not even exist are you kidding me bruhhh");
+    }
+    System.out.println("Enter the field you should update Eg:: name/email/ph");
     String field = scan.next();
-    if (!field.equals("name") && !field.equals("email") && !field.equals("ph")) {
+    
+    if (!field.equals("name") && !field.equals("ph")) {
       System.out.println("Incorrect field - are you blind???!!!!");
       return null;
     }
-
-    return null;
+    System.out.println("Enter the " + field + "updated one");
+    String updatedValue = scan.next();
+    User user = userUtil.getUserByEmail(email);
+    return userUtil.updateUser (user, field, updatedValue);
   }
 
   @Override
@@ -87,7 +86,7 @@ public class UserImpl implements UserAPI {
             .toList();
   }
 
-  public User getUserDetailsById () {
+  public User getUserDetailsByEmail () {
     var scan = new Scanner(System.in);
     System.out.println("Enter the userID:::: ");
     return getUserDetailsByEmail(scan.next()); 
@@ -98,5 +97,21 @@ public class UserImpl implements UserAPI {
     User user = userUtil.getUserByEmail(email);
     System.out.println(user);
     return user;
+  }
+
+  public boolean removeUser () {
+    System.out.println("--------------------------");
+    System.out.println("Enter your email to delete");
+    String email = (String) userUtil.getInput.apply("string");
+    return removeUser(email);
+  }
+
+  @Override
+  public boolean removeUser (String email) {
+    if (userUtil.removeUser(email)) {
+      System.out.println("Successfully deleted::: thank you buddy!!!");
+      return true;
+    }
+    return false;
   }
 }

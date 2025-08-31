@@ -49,6 +49,10 @@ public class User {
       this.user.userId = System.currentTimeMillis();
     }
 
+    Builder (User user) {
+      this.user = user;
+    }
+
     public Builder setName (String name) {
       this.user.name = name;
       return this;

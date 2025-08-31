@@ -48,15 +48,17 @@ public class UserService {
           break;
         case 3:
           System.out.println("-----------GET USER DETAILS STARTS-----------\n \n");
-          userImpl.getUserDetailsById();
+          userImpl.getUserDetailsByEmail();
           System.out.println("-----------GET USER DETAILS ENDS-----------");
           break;
         case 4: 
           System.out.println("-----------DELETE USER STARTS-----------\n \n");
+          userImpl.removeUser();
           System.out.println("-----------DELETE USER ENDS-----------");
           break;
         case 5:
           System.out.println("-----------UPDATE USER STARTS-----------\n \n");
+          userImpl.updateUser();
           System.out.println("-----------UPDATE USER ENDS-----------"); 
           break;
         default:
